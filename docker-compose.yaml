@@ -1,0 +1,52 @@
+services:
+  db:
+    image: docker.io/library/postgres:13
+    container_name: db
+    environment:
+      POSTGRES_USER: wordpress
+      POSTGRES_PASSWORD: somewordpress
+      POSTGRES_DB: wordpress
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - mynet
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: quay.io/florian_even/opensaas-backend
+    container_name: backend
+    env_file:
+      - env.server
+    networks:
+      - mynet
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+
+  frontend:
+    image: quay.io/florian_even/opensaas-frontend:latest
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx/conf/:/etc/nginx/conf.d/:z
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:z
+      - ./certbot/conf/:/etc/letsencrypt/:z
+
+networks:
+  mynet:
+    driver: bridge
+
+volumes:
+  pg_data:
+    driver: local
