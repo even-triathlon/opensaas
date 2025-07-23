@@ -12,6 +12,7 @@ services:
       - mynet
     ports:
       - "5432:5432"
+    restart: always
 
   backend:
     image: quay.io/florian_even/opensaas-backend
@@ -24,6 +25,7 @@ services:
       - db
     ports:
       - "3001:3001"
+    restart: always
 
   frontend:
     image: quay.io/florian_even/opensaas-frontend:latest
@@ -36,13 +38,6 @@ services:
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
 
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:z
-      - ./certbot/conf/:/etc/letsencrypt/:z
-
 networks:
   mynet:
     driver: bridge
@@ -50,3 +45,4 @@ networks:
 volumes:
   pg_data:
     driver: local
+
