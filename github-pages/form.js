@@ -12,6 +12,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorMsg = document.getElementById('form-error');
 
     form.addEventListener('submit', async function (e) {
+        // Add submitted class to show validation styles
+        form.classList.add('submitted');
+
+        if (!form.checkValidity()) {
+            e.preventDefault();
+            if (errorMsg) {
+                errorMsg.textContent = '❌ Veuillez remplir tous les champs obligatoires.';
+                errorMsg.classList.remove('hidden');
+                errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+
         e.preventDefault();
 
         // Hide previous messages
