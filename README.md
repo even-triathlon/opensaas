@@ -38,10 +38,31 @@ Le formulaire d'inscription utilise [Web3Forms](https://web3forms.com/) pour env
 1. Allez sur [https://web3forms.com/](https://web3forms.com/)
 2. Entrez votre adresse email (ex: `contact@rueil-malmaison-triathlon.fr`)
 3. Récupérez votre **Access Key** (clé API gratuite)
-4. Dans `inscription.html`, remplacez la valeur suivante :
-   ```html
-   <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI" />
-   ```
+4. Commitez et pushez — le déploiement est automatique !
+
+### Étape 3 : Configuration du Domaine Personnalisé (DNS)
+
+Pour accéder à votre site via `http://rueil-malmaison-triathlon.fr/` :
+
+1. **Sur GitHub :**
+   - Allez dans **Settings** → **Pages**.
+   - Dans la section **Custom domain**, entrez `rueil-malmaison-triathlon.fr` et cliquez sur **Save**.
+   - GitHub créera automatiquement un fichier `CNAME` dans votre déploiement.
+
+2. **Chez votre fournisseur DNS (ex: OVH, Gandi, etc.) :**
+   - Ajoutez un enregistrement **CNAME** :
+     - Nom : `www`
+     - Cible : `even-triathlon.github.io.` (n'oubliez pas le point à la fin).
+   - Pour le domaine racine (sans `www`), ajoutez quatre enregistrements **A** pointant vers les adresses IP de GitHub Pages :
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+
+3. **HTTPS :**
+   - Une fois les DNS propagés (peut prendre jusqu'à 24h), retournez dans **Settings** → **Pages** et cochez **Enforce HTTPS**.
+
+---
 
 ## 🔐 Gestion des Secrets sur GitHub Pages
 
@@ -52,8 +73,6 @@ Le formulaire d'inscription utilise [Web3Forms](https://web3forms.com/) pour env
 3. **Bonne pratique (Clean Code) :** Si vous souhaitez ne pas "hardcoder" la clé dans votre dépôt Git public :
    - Utilisez un **Secret GitHub** (`Settings > Secrets and variables > Actions`).
    - Modifiez votre workflow de déploiement pour remplacer une variable (ex: `__WEB3FORMS_KEY__`) dans vos fichiers HTML juste avant le déploiement.
-
----
 
 ## ✨ Fonctionnalités
 
