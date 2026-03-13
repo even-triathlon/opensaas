@@ -26,18 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
 
-            console.log('Sending to Web3Forms:', object);
+            // On s'assure que la clé est bien présente et propre
+            const accessKey = "486357e9-3b9c-4f64-bfb5-95f7a6695d2b";
+            formData.set('access_key', accessKey);
+
+            console.log('Envoi à Web3Forms avec la clé:', accessKey);
 
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: json
+                body: formData // On repasse en FormData (multipart/form-data) qui est le format natif supporté
             });
 
             const data = await response.json();
