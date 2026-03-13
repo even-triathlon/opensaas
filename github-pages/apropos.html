@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>À Propos - Club de Triathlon de Rueil-Malmaison</title>
+    <meta name="description"
+        content="Découvrez le Club de Triathlon de Rueil-Malmaison : notre histoire, nos activités et notre mission." />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header id="main-header" class="navbar-sticky">
+        <nav class="navbar-inner" aria-label="Navigation principale">
+            <div class="navbar-logo-section">
+                <a href="index.html" class="navbar-logo-link">
+                    <img class="nav-logo-img" src="logo.webp" alt="Rueil Malmaison Triathlon" />
+                </a>
+            </div>
+            <div class="navbar-links-desktop">
+                <a href="index.html#horaires" class="nav-link">Horaires</a>
+                <a href="inscription.html" class="nav-link">Inscriptions</a>
+                <a href="apropos.html" class="nav-link">A Propos</a>
+            </div>
+            <div class="navbar-right-desktop">
+                <div class="darkmode-switcher-wrap">
+                    <label id="dark-toggle-label" class="darkmode-label bg-stroke">
+                        <input type="checkbox" id="dark-toggle" class="darkmode-checkbox" />
+                        <span id="dark-toggle-knob" class="darkmode-knob">
+                            <span id="sun-icon" class="mode-icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path
+                                        d="M7.99992 12.6666C10.5772 12.6666 12.6666 10.5772 12.6666 7.99992C12.6666 5.42259 10.5772 3.33325 7.99992 3.33325C5.42259 3.33325 3.33325 5.42259 3.33325 7.99992C3.33325 10.5772 5.42259 12.6666 7.99992 12.6666Z"
+                                        fill="#969AA1" />
+                                </svg>
+                            </span>
+                            <span id="moon-icon" class="mode-icon" style="opacity:0;">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path
+                                        d="M14.3533 10.62C14.2466 10.44 13.9466 10.16 13.1999 10.2933C12.7866 10.3667 12.3666 10.4 11.9466 10.38C10.3933 10.3133 8.98659 9.6 8.00659 8.5C7.13993 7.53333 6.60659 6.27333 6.59993 4.91333C6.59993 4.15333 6.74659 3.42 7.04659 2.72666C7.33993 2.05333 7.13326 1.7 6.98659 1.55333C6.83326 1.4 6.47326 1.18666 5.76659 1.48C3.03993 2.62666 1.35326 5.36 1.55326 8.28666C1.75326 11.04 3.68659 13.3933 6.24659 14.28C6.85993 14.4933 7.50659 14.62 8.17326 14.6467C8.27993 14.6533 8.38659 14.66 8.49326 14.66C10.7266 14.66 12.8199 13.6067 14.1399 11.8133C14.5866 11.1933 14.4666 10.8 14.3533 10.62Z"
+                                        fill="#969AA1" />
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="navbar-logo-link"><img class="nav-logo-img" src="logo.webp"
+                        alt="Logo" /></a>
+                <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Fermer"><svg
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" width="24" height="24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg></button>
+            </div>
+            <div class="mobile-menu-links">
+                <a href="index.html#horaires" class="mobile-nav-link">Horaires</a>
+                <a href="inscription.html" class="mobile-nav-link">Inscriptions</a>
+                <a href="apropos.html" class="mobile-nav-link">A Propos</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <div class="section-container">
+            <div class="page-title-center">
+                <h2 class="page-main-title">Qui sommes-nous ?</h2>
+            </div>
+            <p class="page-subtitle">
+                Bienvenue au Rueil-Malmaison Triathlon, un club affilié à la Fédération Française de Triathlon, fondé en
+                2025. Nous sommes fiers d'être le club de triathlon de la ville de Rueil-Malmaison, offrant une ambiance
+                conviviale et accessible à tous, en particulier aux débutants.
+            </p>
+
+            <div class="aboutus-card">
+                <div class="aboutus-card-inner">
+                    <h3 class="aboutus-section-title">Nos activités</h3>
+                    <p class="aboutus-text">
+                        Nos entraînements se déroulent à la piscine du Centre aquatique Arsenal, sur la piste du stade
+                        Ladoumègue, et autour de la ville de Rueil-Malmaison pour le vélo. Nous proposons des séances
+                        adaptées à tous les niveaux, dans une ambiance détendue et encourageante.
+                    </p>
+
+                    <h3 class="aboutus-section-title mt-8">Notre mission</h3>
+                    <p class="aboutus-text">
+                        Notre mission est de promouvoir le triathlon comme un sport accessible et ludique. Nous croyons
+                        que chacun peut trouver sa place dans notre club, quel que soit son niveau. Nous nous engageons
+                        à accompagner nos membres dans leur progression, tout en favorisant les valeurs de respect, de
+                        dépassement de soi et de convivialité.
+                    </p>
+
+                    <a href="inscription.html#contact-form" class="join-btn">
+                        Rejoignez-nous
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-outer">
+        <footer class="footer-inner" aria-labelledby="footer-heading3">
+            <h2 id="footer-heading3" class="sr-only">Footer</h2>
+            <div class="footer-brand-block">
+                <h3 class="footer-brand-title">Rueil-malmaison Triathlon</h3>
+                <p class="footer-brand-desc">Plongez dans l'univers du triple effort, roulez vers de nouveaux défis et
+                    courez ensemble vers vos objectifs.</p>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Le club</h3>
+                    <ul class="footer-list">
+                        <li><a href="index.html#horaires" class="footer-link">Les Horaires</a></li>
+                        <li><a href="index.html#horaires" class="footer-link">Les Lieux</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Nous contacter</h3>
+                    <ul class="footer-list">
+                        <li><a href="mailto:contact@rueil-malmaison-triathlon.fr" class="footer-link">Email:
+                                contact@rueil-malmaison-triathlon.fr</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr" class="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscriptions - Club de Triathlon de Rueil-Malmaison</title>
+    <meta name="description"
+        content="Inscrivez-vous au Club de Triathlon de Rueil-Malmaison. Choisissez votre type d'inscription et remplissez le formulaire." />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- NAVBAR (non-landing style: sticky with bg) -->
+    <header id="main-header" class="navbar-sticky">
+        <nav class="navbar-inner" aria-label="Navigation principale">
+            <div class="navbar-logo-section">
+                <a href="index.html" class="navbar-logo-link">
+                    <img class="nav-logo-img" src="logo.webp" alt="Rueil Malmaison Triathlon" />
+                </a>
+            </div>
+            <div class="navbar-links-desktop">
+                <a href="index.html#horaires" class="nav-link">Horaires</a>
+                <a href="inscription.html" class="nav-link">Inscriptions</a>
+                <a href="apropos.html" class="nav-link">A Propos</a>
+            </div>
+            <div class="navbar-right-desktop">
+                <div class="darkmode-switcher-wrap">
+                    <label id="dark-toggle-label" class="darkmode-label bg-stroke">
+                        <input type="checkbox" id="dark-toggle" class="darkmode-checkbox" />
+                        <span id="dark-toggle-knob" class="darkmode-knob">
+                            <span id="sun-icon" class="mode-icon">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path
+                                        d="M7.99992 12.6666C10.5772 12.6666 12.6666 10.5772 12.6666 7.99992C12.6666 5.42259 10.5772 3.33325 7.99992 3.33325C5.42259 3.33325 3.33325 5.42259 3.33325 7.99992C3.33325 10.5772 5.42259 12.6666 7.99992 12.6666Z"
+                                        fill="#969AA1" />
+                                </svg>
+                            </span>
+                            <span id="moon-icon" class="mode-icon" style="opacity:0;">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path
+                                        d="M14.3533 10.62C14.2466 10.44 13.9466 10.16 13.1999 10.2933C12.7866 10.3667 12.3666 10.4 11.9466 10.38C10.3933 10.3133 8.98659 9.6 8.00659 8.5C7.13993 7.53333 6.60659 6.27333 6.59993 4.91333C6.59993 4.15333 6.74659 3.42 7.04659 2.72666C7.33993 2.05333 7.13326 1.7 6.98659 1.55333C6.83326 1.4 6.47326 1.18666 5.76659 1.48C3.03993 2.62666 1.35326 5.36 1.55326 8.28666C1.75326 11.04 3.68659 13.3933 6.24659 14.28C6.85993 14.4933 7.50659 14.62 8.17326 14.6467C8.27993 14.6533 8.38659 14.66 8.49326 14.66C10.7266 14.66 12.8199 13.6067 14.1399 11.8133C14.5866 11.1933 14.4666 10.8 14.3533 10.62Z"
+                                        fill="#969AA1" />
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" width="24" height="24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="navbar-logo-link"><img class="nav-logo-img" src="logo.webp"
+                        alt="Logo" /></a>
+                <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Fermer"><svg
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" width="24" height="24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg></button>
+            </div>
+            <div class="mobile-menu-links">
+                <a href="index.html#horaires" class="mobile-nav-link" onclick="closeMobileMenu()">Horaires</a>
+                <a href="inscription.html" class="mobile-nav-link">Inscriptions</a>
+                <a href="apropos.html" class="mobile-nav-link">A Propos</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <div class="section-container">
+
+            <!-- Warning banner -->
+            <div class="alert-banner-red">
+                <p class="alert-banner-text">Attention : Les inscriptions ne sont pas encore ouvertes. Elles seront
+                    accessibles à partir du 30 juin 2025.</p>
+            </div>
+
+            <!-- Title -->
+            <div class="page-title-center">
+                <h2 class="page-main-title">
+                    Rejoignez le <span class="text-purple-accent">Club de Triathlon</span> de Rueil-Malmaison
+                </h2>
+            </div>
+            <p class="page-subtitle">
+                Vous avez plus de 18 ans et savez déjà nager ? Que vous soyez débutant ou expérimenté, le Club de
+                Triathlon de Rueil-Malmaison vous accueille. Profitez d'entraînements adaptés et d'une ambiance
+                conviviale ! Inscrivez-vous dès maintenant pour réserver votre place : 50 places disponibles.
+            </p>
+
+            <!-- Pricing cards -->
+            <div class="pricing-grid">
+                <!-- Card 1 -->
+                <div class="pricing-card ring-1">
+                    <div class="pricing-card-body">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-plan-name">Inscription Type 1</h3>
+                        </div>
+                        <p class="pricing-plan-desc">Entraînements LUNDI MARDI et SAMEDI</p>
+                        <p class="pricing-price-row">
+                            <span class="pricing-price">254€</span>
+                            <span class="pricing-price-period">/an</span>
+                        </p>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de natation du LUNDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de course à pied du MARDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Séances de groupe de vélo organisées par les membres
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pricing-card ring-1">
+                    <div class="pricing-card-body">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-plan-name">Inscription Type 2</h3>
+                        </div>
+                        <p class="pricing-plan-desc">Entraînements MARDI JEUDI et SAMEDI</p>
+                        <p class="pricing-price-row">
+                            <span class="pricing-price">254€</span>
+                            <span class="pricing-price-period">/an</span>
+                        </p>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de natation du JEUDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de course à pied du MARDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Séances de groupe de vélo organisées par les membres
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3 - Best Deal -->
+                <div class="pricing-card pricing-card-best ring-2">
+                    <div class="pricing-best-bg" aria-hidden="true">
+                        <div class="pricing-best-gradient"></div>
+                    </div>
+                    <div class="pricing-card-body">
+                        <div class="pricing-card-header">
+                            <h3 class="pricing-plan-name">Inscription Type 3</h3>
+                        </div>
+                        <p class="pricing-plan-desc">Entraînements LUNDI, MARDI, JEUDI et SAMEDI</p>
+                        <p class="pricing-price-row">
+                            <span class="pricing-price">297€</span>
+                            <span class="pricing-price-period">/an</span>
+                        </p>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de natation du LUNDI et du JEUDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Entraînements de course à pied du MARDI avec entraîneur
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Séances de groupe de vélo organisées par les membres
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form Section -->
+            <div id="contact-form" class="contact-form-section">
+                <div class="contact-form-header-block">
+                    <h3 class="contact-form-main-title">Inscription au Club de Triathlon</h3>
+                    <p class="contact-form-subtitle">
+                        Veuillez remplir le formulaire ci-dessous pour vous inscrire.<br />
+                    </p>
+                    <div class="alert-banner-red mt-4">
+                        <p class="alert-banner-text">Attention : Le nombre de places au club est limité en raison des
+                            infrastructures disponibles. Ce formulaire ne constitue pas une inscription définitive, mais
+                            une demande d'inscription.</p>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <h3 class="form-card-title">Formulaire d'Inscription</h3>
+                    </div>
+                    <form id="inscription-form" class="form-body">
+                        <!-- Honeypot anti-spam -->
+                        <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off" />
+                        <!-- Web3Forms access key -->
+                        <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI" />
+                        <input type="hidden" name="subject"
+                            value="Nouvelle demande d'inscription - Club Triathlon Rueil-Malmaison" />
+                        <input type="hidden" name="from_name" value="Club Triathlon Rueil-Malmaison" />
+                        <input type="hidden" name="redirect" value="merci.html" />
+
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label class="form-label">Prénom</label>
+                                <input type="text" name="firstName" placeholder="Entrez votre prénom" required
+                                    class="form-input" />
+                            </div>
+                            <div class="form-col">
+                                <label class="form-label">Nom</label>
+                                <input type="text" name="lastName" placeholder="Entrez votre nom" required
+                                    class="form-input" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label class="form-label">Date de Naissance</label>
+                                <input type="date" name="birthDate" required class="form-input" />
+                            </div>
+                            <div class="form-col">
+                                <label class="form-label">Adresse Postale</label>
+                                <input type="text" name="address" placeholder="Entrez votre adresse postale" required
+                                    class="form-input" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label class="form-label">Téléphone</label>
+                                <input type="tel" name="phone" placeholder="Entrez votre numéro de téléphone" required
+                                    class="form-input" />
+                            </div>
+                            <div class="form-col">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" placeholder="Entrez votre adresse email" required
+                                    class="form-input" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Niveau de Pratique</label>
+                            <select name="sportsLevel" required class="form-input">
+                                <option value="">Sélectionnez votre niveau</option>
+                                <option value="débutant">Débutant</option>
+                                <option value="intermédiaire">Intermédiaire</option>
+                                <option value="avancé">Avancé</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Expérience Sportive</label>
+                            <textarea name="sportsExperience"
+                                placeholder="Décrivez votre expérience en triathlon ou dans d'autres sports" required
+                                rows="4" class="form-input"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Objectifs Sportifs</label>
+                            <textarea name="sportsGoals" placeholder="Quels sont vos objectifs sportifs ?" required
+                                rows="4" class="form-input"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Type d'Inscription</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="subscriptionType" value="Inscription type 1" required
+                                        class="radio-input" />
+                                    Inscription type 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="subscriptionType" value="Inscription type 2"
+                                        class="radio-input" />
+                                    Inscription type 2
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="subscriptionType" value="Inscription type 3"
+                                        class="radio-input" />
+                                    Inscription type 3
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-submit-row">
+                            <button type="submit" id="submit-btn" class="form-submit-btn">Envoyer</button>
+                        </div>
+                        <div id="form-success" class="form-success hidden">
+                            ✅ Formulaire envoyé avec succès ! Vous serez recontacté très prochainement.
+                        </div>
+                        <div id="form-error" class="form-error hidden">
+                            ❌ Erreur lors de l'envoi du formulaire. Veuillez réessayer.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-outer">
+        <footer class="footer-inner" aria-labelledby="footer-heading2">
+            <h2 id="footer-heading2" class="sr-only">Footer</h2>
+            <div class="footer-brand-block">
+                <h3 class="footer-brand-title">Rueil-malmaison Triathlon</h3>
+                <p class="footer-brand-desc">Plongez dans l'univers du triple effort, roulez vers de nouveaux défis et
+                    courez ensemble vers vos objectifs.</p>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Le club</h3>
+                    <ul class="footer-list">
+                        <li><a href="index.html#horaires" class="footer-link">Les Horaires</a></li>
+                        <li><a href="index.html#horaires" class="footer-link">Les Lieux</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-col-title">Nous contacter</h3>
+                    <ul class="footer-list">
+                        <li><a href="mailto:contact@rueil-malmaison-triathlon.fr" class="footer-link">Email:
+                                contact@rueil-malmaison-triathlon.fr</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="form.js"></script>
+</body>
+
+</html>
