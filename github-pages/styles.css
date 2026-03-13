@@ -581,129 +581,62 @@ html.dark .section-title-center {
   color: #fff;
 }
 
-/* --- SCHEDULE SECTION (NEW GRID UI) --- */
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 3rem;
+/* --- SCHEDULE TABLE --- */
+.table-overflow {
+  overflow-x: auto;
 }
 
-@media (min-width: 640px) {
-  .schedule-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.schedule-table {
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border: 1px solid var(--color-red-brand);
 }
 
-@media (min-width: 1024px) {
-  .schedule-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1280px) {
-  .schedule-grid {
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.75rem;
-  }
-}
-
-.schedule-day-card {
-  background: #fff;
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: var(--radius-xl);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow-card);
-}
-
-.schedule-day-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-html.dark .schedule-day-card {
-  background: var(--color-boxdark);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.day-name {
-  font-size: 0.875rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--color-gray-500);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
-}
-
-html.dark .day-name {
-  color: var(--color-gray-400);
-}
-
-.sport-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.25rem 0.6rem;
-  border-radius: 9999px;
-  width: fit-content;
-}
-
-.sport-natation {
-  background: rgba(116, 124, 203, 0.1);
-  color: var(--color-purple);
-}
-
-.sport-running {
-  background: rgba(234, 179, 8, 0.1);
-  color: #854d0e;
-}
-
-html.dark .sport-running {
-  color: var(--color-yellow);
-}
-
-.sport-velo {
-  background: rgba(255, 4, 84, 0.1);
-  color: var(--color-red-brand);
-}
-
-.sport-none {
-  background: #f3f4f6;
-  color: #9ca3af;
-}
-
-html.dark .sport-none {
-  background: #374151;
-  color: #9ca3af;
-}
-
-.session-time {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-gray-900);
-}
-
-html.dark .session-time {
+.schedule-header-row {
+  background-color: var(--color-red-brand);
   color: #fff;
 }
 
-.session-location {
-  font-size: 0.8125rem;
-  color: var(--color-gray-600);
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  line-height: 1.4;
+.schedule-th {
+  border: 1px solid var(--color-red-brand);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.875rem;
 }
 
-html.dark .session-location {
-  color: var(--color-gray-400);
+.schedule-row {
+  background-color: #fff;
+}
+
+html.dark .schedule-row {
+  background-color: #111827;
+}
+
+.schedule-row-alt {
+  background-color: #F3F4F6;
+}
+
+html.dark .schedule-row-alt {
+  background-color: #1F2937;
+}
+
+.schedule-td {
+  border: 1px solid var(--color-red-brand);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-gray-900);
+}
+
+html.dark .schedule-td {
+  color: #fff;
+}
+
+.schedule-td-label {
+  font-weight: 600;
 }
 
 /* --- FEATURES SECTION --- */
