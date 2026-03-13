@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Page non trouvée - Redirection...</title>
+    <script type="text/javascript">
+        // Détection de l'environnement pour une redirection propre
+        var path = window.location.pathname;
+        var hostname = window.location.hostname;
+
+        // Si on est sur l'URL GitHub Pages par défaut avec le sous-dossier /opensaas/
+        if (hostname.includes('github.io') && path.includes('/opensaas/')) {
+            window.location.href = '/opensaas/';
+        } else {
+            // Pour le domaine personnalisé ou racine
+            window.location.href = '/';
+        }
+    </script>
+    <meta http-equiv="refresh" content="0; URL='/'">
+</head>
+
+<body>
+    <p>Page non trouvée. Redirection vers l'accueil...</p>
+</body>
+
+</html>
