@@ -42,17 +42,16 @@ Le formulaire d'inscription utilise [Web3Forms](https://web3forms.com/) pour env
    ```html
    <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI" />
    ```
-   Par votre vraie clé :
-   ```html
-   <input type="hidden" name="access_key" value="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
-   ```
-5. Commitez et pushez — le déploiement est automatique !
 
-### Étape 3 : (Optionnel) Personnaliser l'URL
+## 🔐 Gestion des Secrets sur GitHub Pages
 
-Si votre site est hébergé sous `https://VOTRE_ORG.github.io/VOTRE_REPO/`, vous devrez peut-être préfixer vos liens (logo, banner, styles). Par défaut les liens sont relatifs et fonctionnent correctement si le site est à la racine du domaine GitHub Pages.
+**Important :** GitHub Pages est un service d'hébergement de site **statique**. Cela signifie qu'il n'y a pas de serveur pour masquer vos clés API. 
 
-Si GitHub Pages est configuré sur un sous-chemin (ex: `/opensaas`), modifiez les `href` et `src` en conséquence ou utilisez un domaine personnalisé.
+1. **Visibilité :** Toute clé utilisée dans votre code HTML ou JavaScript (comme la clé Web3Forms) sera visible par quiconque consulte le code source de votre site web. C'est normal pour des services conçus pour le frontend comme Web3Forms.
+2. **Protection :** Pour Web3Forms, vous pouvez limiter l'utilisation de votre clé à votre domaine (ex: `votre-org.github.io`) dans les réglages de votre compte Web3Forms pour éviter qu'elle ne soit utilisée ailleurs.
+3. **Bonne pratique (Clean Code) :** Si vous souhaitez ne pas "hardcoder" la clé dans votre dépôt Git public :
+   - Utilisez un **Secret GitHub** (`Settings > Secrets and variables > Actions`).
+   - Modifiez votre workflow de déploiement pour remplacer une variable (ex: `__WEB3FORMS_KEY__`) dans vos fichiers HTML juste avant le déploiement.
 
 ---
 
