@@ -70,10 +70,13 @@
       max-width: 80rem;
       margin: 0 auto 1.25rem;
       padding: 0 1.5rem;
+    }
+    .filters-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.75rem;
+      margin-bottom: 0.75rem;
     }
     .filter-label {
       font-size: 0.8rem;
@@ -107,42 +110,6 @@
       border-color: var(--color-yellow);
       color: #000;
     }
-    .filter-sep {
-      width: 1px;
-      height: 1.2rem;
-      background: var(--color-stroke);
-      align-self: center;
-    }
-    html.dark .filter-sep { background: var(--color-strokedk); }
-
-    /* Range filters */
-    .range-filter {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--color-gray-900);
-    }
-    html.dark .range-filter { color: #fff; }
-    .range-filter select {
-      padding: 0.3rem 0.6rem;
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--color-stroke);
-      background: #fff;
-      color: var(--color-gray-900);
-      font-size: 0.8rem;
-      font-family: var(--font-main);
-      font-weight: 600;
-      cursor: pointer;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    html.dark .range-filter select {
-      background: var(--color-boxdark);
-      border-color: var(--color-strokedk);
-      color: #fff;
-    }
-    .range-filter select:focus { border-color: var(--color-yellow); }
 
     /* Result count */
     .result-count {
@@ -150,6 +117,109 @@
       font-size: 0.8rem;
       color: var(--color-body);
       white-space: nowrap;
+    }
+
+    /* ---- Sliders row ---- */
+    .sliders-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1rem 1.25rem;
+      background: #fff;
+      border: 1px solid var(--color-stroke);
+      border-radius: var(--radius-xl);
+      margin-bottom: 1.25rem;
+    }
+    html.dark .sliders-row {
+      background: var(--color-boxdark);
+      border-color: var(--color-strokedk);
+    }
+    .slider-group {
+      flex: 1;
+      min-width: 200px;
+    }
+    .slider-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .slider-group-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-gray-900);
+    }
+    html.dark .slider-group-title { color: #fff; }
+    .slider-value {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-yellow);
+      background: rgba(234,179,8,0.1);
+      border: 1px solid rgba(234,179,8,0.3);
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+    }
+    /* Dual-range container */
+    .dual-range {
+      position: relative;
+      height: 32px;
+      display: flex;
+      align-items: center;
+    }
+    .dual-range input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      position: absolute;
+      width: 100%;
+      height: 0;
+      background: transparent;
+      pointer-events: none;
+      outline: none;
+    }
+    .dual-range input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-yellow);
+      border: 3px solid #fff;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+      pointer-events: all;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .dual-range input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .dual-range input[type=range]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--color-yellow);
+      border: 3px solid #fff;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+      pointer-events: all;
+      cursor: pointer;
+    }
+    /* Track fill */
+    .dual-range-track {
+      position: absolute;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-stroke);
+      width: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    html.dark .dual-range-track { background: var(--color-strokedk); }
+    .dual-range-fill {
+      position: absolute;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-yellow);
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
     }
 
     /* ---- Layout ---- */
@@ -383,39 +453,44 @@
 
   <!-- FILTERS -->
   <div class="filters-bar">
-    <span class="filter-label">Niveau :</span>
-    <div class="filter-group">
-      <button class="filter-btn active" data-pack="all">Tous</button>
-      <button class="filter-btn" data-pack="fast">🔥 Fast Pack</button>
-      <button class="filter-btn" data-pack="middle">⚡ Middle Pack</button>
-      <button class="filter-btn" data-pack="rookie">🌱 Rookie Pack</button>
+    <div class="filters-row">
+      <span class="filter-label">Niveau :</span>
+      <div class="filter-group">
+        <button class="filter-btn active" data-pack="all">Tous</button>
+        <button class="filter-btn" data-pack="fast">🔥 Fast Pack</button>
+        <button class="filter-btn" data-pack="middle">⚡ Middle Pack</button>
+        <button class="filter-btn" data-pack="rookie">🌱 Rookie Pack</button>
+      </div>
+      <span class="result-count" id="result-count"></span>
     </div>
-
-    <div class="filter-sep"></div>
-
-    <div class="range-filter">
-      <span>Distance :</span>
-      <select id="filter-dist">
-        <option value="0">Toutes</option>
-        <option value="60">≤ 60 km</option>
-        <option value="80">≤ 80 km</option>
-        <option value="100">≤ 100 km</option>
-        <option value="100p">&gt; 100 km</option>
-      </select>
+    <div class="sliders-row">
+      <!-- Distance slider -->
+      <div class="slider-group">
+        <div class="slider-group-header">
+          <span class="slider-group-title">🚴 Distance</span>
+          <span class="slider-value" id="dist-label">40 – 120 km</span>
+        </div>
+        <div class="dual-range" id="dist-slider">
+          <div class="dual-range-track"></div>
+          <div class="dual-range-fill" id="dist-fill"></div>
+          <input type="range" id="dist-min" min="40" max="120" value="40" step="5" />
+          <input type="range" id="dist-max" min="40" max="120" value="120" step="5" />
+        </div>
+      </div>
+      <!-- Elevation slider -->
+      <div class="slider-group">
+        <div class="slider-group-header">
+          <span class="slider-group-title">⛰ Dénivelé</span>
+          <span class="slider-value" id="ele-label">300 – 1250 m</span>
+        </div>
+        <div class="dual-range" id="ele-slider">
+          <div class="dual-range-track"></div>
+          <div class="dual-range-fill" id="ele-fill"></div>
+          <input type="range" id="ele-min" min="300" max="1250" value="300" step="50" />
+          <input type="range" id="ele-max" min="300" max="1250" value="1250" step="50" />
+        </div>
+      </div>
     </div>
-
-    <div class="range-filter">
-      <span>Dénivelé :</span>
-      <select id="filter-ele">
-        <option value="0">Tous</option>
-        <option value="500">≤ 500 m</option>
-        <option value="800">≤ 800 m</option>
-        <option value="1000">≤ 1000 m</option>
-        <option value="1000p">&gt; 1000 m</option>
-      </select>
-    </div>
-
-    <span class="result-count" id="result-count"></span>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -527,20 +602,46 @@
 
     /* ---- Filter state ---- */
     let activePack = 'all';
-    let activeDist = '0';
-    let activeEle  = '0';
+    let distMin = 40, distMax = 120;
+    let eleMin  = 300, eleMax  = 1250;
 
     function matchesFilters(t) {
       if (activePack !== 'all' && t.pack !== activePack) return false;
-      if (activeDist === '60'   && t.dist > 60)   return false;
-      if (activeDist === '80'   && t.dist > 80)   return false;
-      if (activeDist === '100'  && t.dist > 100)  return false;
-      if (activeDist === '100p' && t.dist <= 100) return false;
-      if (activeEle  === '500'  && t.ele > 500)   return false;
-      if (activeEle  === '800'  && t.ele > 800)   return false;
-      if (activeEle  === '1000' && t.ele > 1000)  return false;
-      if (activeEle  === '1000p'&& t.ele <= 1000) return false;
+      if (t.dist < distMin || t.dist > distMax) return false;
+      if (t.ele  < eleMin  || t.ele  > eleMax)  return false;
       return true;
+    }
+
+    /* ---- Dual range slider helper ---- */
+    function setupDualRange(minId, maxId, fillId, labelId, unit, onUpdate) {
+      const inputMin = document.getElementById(minId);
+      const inputMax = document.getElementById(maxId);
+      const fill     = document.getElementById(fillId);
+      const label    = document.getElementById(labelId);
+      const total    = parseFloat(inputMax.max) - parseFloat(inputMax.min);
+
+      function updateFill() {
+        const lo = parseFloat(inputMin.value);
+        const hi = parseFloat(inputMax.value);
+        const pLo = (lo - parseFloat(inputMin.min)) / total * 100;
+        const pHi = (hi - parseFloat(inputMax.min)) / total * 100;
+        fill.style.left  = pLo + '%';
+        fill.style.width = (pHi - pLo) + '%';
+        label.textContent = lo + ' – ' + hi + ' ' + unit;
+        onUpdate(lo, hi);
+      }
+
+      inputMin.addEventListener('input', () => {
+        if (parseFloat(inputMin.value) > parseFloat(inputMax.value))
+          inputMin.value = inputMax.value;
+        updateFill();
+      });
+      inputMax.addEventListener('input', () => {
+        if (parseFloat(inputMax.value) < parseFloat(inputMin.value))
+          inputMax.value = inputMin.value;
+        updateFill();
+      });
+      updateFill();
     }
 
     /* ---- GPX helpers ---- */
@@ -677,16 +778,14 @@
         });
       });
 
-      // Distance select
-      document.getElementById('filter-dist').addEventListener('change', function () {
-        activeDist = this.value;
-        renderList();
+      // Distance dual slider
+      setupDualRange('dist-min', 'dist-max', 'dist-fill', 'dist-label', 'km', (lo, hi) => {
+        distMin = lo; distMax = hi; renderList();
       });
 
-      // Elevation select
-      document.getElementById('filter-ele').addEventListener('change', function () {
-        activeEle = this.value;
-        renderList();
+      // Elevation dual slider
+      setupDualRange('ele-min', 'ele-max', 'ele-fill', 'ele-label', 'm', (lo, hi) => {
+        eleMin = lo; eleMax = hi; renderList();
       });
     });
 
