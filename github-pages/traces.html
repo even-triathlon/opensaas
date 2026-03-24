@@ -9,12 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Leaflet CSS (no integrity attribute to avoid hash mismatch) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* ---- Traces page layout ---- */
+    /* ---- Hero ---- */
     .traces-hero {
       text-align: center;
       padding: 3rem 1.5rem 2rem;
@@ -47,7 +46,113 @@
       margin: 0 auto;
     }
 
-    /* ---- Main layout ---- */
+    /* ---- Pack tags ---- */
+    .pack-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-radius: 999px;
+      padding: 0.18rem 0.65rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .pack-fast  { background: rgba(239,68,68,.12); color: #dc2626; border: 1px solid rgba(239,68,68,.3); }
+    .pack-middle{ background: rgba(59,130,246,.12); color: #2563eb; border: 1px solid rgba(59,130,246,.3); }
+    .pack-rookie{ background: rgba(34,197,94,.12);  color: #16a34a; border: 1px solid rgba(34,197,94,.3); }
+    html.dark .pack-fast  { color: #f87171; border-color: rgba(248,113,113,.3); background: rgba(239,68,68,.15); }
+    html.dark .pack-middle{ color: #60a5fa; border-color: rgba(96,165,250,.3);  background: rgba(59,130,246,.15); }
+    html.dark .pack-rookie{ color: #4ade80; border-color: rgba(74,222,128,.3);  background: rgba(34,197,94,.15); }
+
+    /* ---- Filters bar ---- */
+    .filters-bar {
+      max-width: 80rem;
+      margin: 0 auto 1.25rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-body);
+      white-space: nowrap;
+    }
+    .filter-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--color-stroke);
+      background: transparent;
+      color: var(--color-gray-900);
+      transition: all 0.15s;
+    }
+    html.dark .filter-btn { border-color: var(--color-strokedk); color: #fff; }
+    .filter-btn:hover { border-color: var(--color-yellow); }
+    .filter-btn.active {
+      background: var(--color-yellow);
+      border-color: var(--color-yellow);
+      color: #000;
+    }
+    .filter-sep {
+      width: 1px;
+      height: 1.2rem;
+      background: var(--color-stroke);
+      align-self: center;
+    }
+    html.dark .filter-sep { background: var(--color-strokedk); }
+
+    /* Range filters */
+    .range-filter {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-gray-900);
+    }
+    html.dark .range-filter { color: #fff; }
+    .range-filter select {
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--color-stroke);
+      background: #fff;
+      color: var(--color-gray-900);
+      font-size: 0.8rem;
+      font-family: var(--font-main);
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    html.dark .range-filter select {
+      background: var(--color-boxdark);
+      border-color: var(--color-strokedk);
+      color: #fff;
+    }
+    .range-filter select:focus { border-color: var(--color-yellow); }
+
+    /* Result count */
+    .result-count {
+      margin-left: auto;
+      font-size: 0.8rem;
+      color: var(--color-body);
+      white-space: nowrap;
+    }
+
+    /* ---- Layout ---- */
     .traces-layout {
       display: grid;
       grid-template-columns: 1fr;
@@ -57,26 +162,17 @@
       padding: 0 1.5rem 3rem;
     }
     @media (min-width: 1024px) {
-      .traces-layout {
-        grid-template-columns: 360px 1fr;
-        align-items: start;
-      }
+      .traces-layout { grid-template-columns: 360px 1fr; align-items: start; }
     }
 
     /* ---- Track list panel ---- */
     .track-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
       background: #fff;
       border: 1px solid var(--color-stroke);
       border-radius: var(--radius-xl);
       overflow: hidden;
     }
-    html.dark .track-panel {
-      background: var(--color-boxdark);
-      border-color: var(--color-strokedk);
-    }
+    html.dark .track-panel { background: var(--color-boxdark); border-color: var(--color-strokedk); }
     .track-panel-header {
       padding: 1rem 1.25rem;
       border-bottom: 1px solid var(--color-stroke);
@@ -87,11 +183,9 @@
       align-items: center;
       gap: 0.5rem;
     }
-    html.dark .track-panel-header {
-      border-color: var(--color-strokedk);
-      color: #fff;
-    }
+    html.dark .track-panel-header { border-color: var(--color-strokedk); color: #fff; }
     .track-count-badge {
+      margin-left: auto;
       background: var(--color-yellow);
       color: #000;
       border-radius: 999px;
@@ -99,50 +193,51 @@
       font-size: 0.75rem;
       font-weight: 700;
     }
-    .track-list-inner {
-      max-height: 560px;
-      overflow-y: auto;
-    }
+    .track-list-inner { max-height: 580px; overflow-y: auto; }
     .track-list-inner::-webkit-scrollbar { width: 4px; }
-    .track-list-inner::-webkit-scrollbar-track { background: transparent; }
     .track-list-inner::-webkit-scrollbar-thumb { background: var(--color-stroke); border-radius: 4px; }
 
     .track-item {
-      display: flex;
-      flex-direction: column;
       padding: 1rem 1.25rem;
       cursor: pointer;
       border-bottom: 1px solid var(--color-stroke);
       transition: background 0.15s;
-      position: relative;
+      border-left: 3px solid transparent;
     }
     .track-item:last-child { border-bottom: none; }
-    html.dark .track-item { border-color: var(--color-strokedk); }
-
+    html.dark .track-item { border-color: var(--color-strokedk); border-left-color: transparent; }
     .track-item:hover { background: rgba(234,179,8,0.07); }
-    .track-item.active {
-      background: rgba(234,179,8,0.1);
-      border-left: 3px solid var(--color-yellow);
-    }
+    .track-item.active { background: rgba(234,179,8,0.1); border-left-color: var(--color-yellow); }
     html.dark .track-item.active { background: rgba(234,179,8,0.08); }
 
+    .track-item-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
     .track-item-name {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       color: var(--color-gray-900);
-      margin-bottom: 0.35rem;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     html.dark .track-item-name { color: #fff; }
     .track-item-stats {
       display: flex;
-      gap: 1rem;
-      font-size: 0.8rem;
+      gap: 0.75rem;
+      font-size: 0.78rem;
       color: var(--color-body);
     }
-    .stat-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
+    .track-item-empty {
+      padding: 2rem 1.25rem;
+      text-align: center;
+      color: var(--color-body);
+      font-size: 0.875rem;
     }
 
     /* ---- Map panel ---- */
@@ -154,47 +249,49 @@
       border: 1px solid var(--color-stroke);
       background: #f9fafb;
     }
-    html.dark .map-panel {
-      background: var(--color-boxdark);
-      border-color: var(--color-strokedk);
-    }
-    #map {
-      height: 480px;
-      width: 100%;
-      z-index: 1;
-    }
+    html.dark .map-panel { background: var(--color-boxdark); border-color: var(--color-strokedk); }
+    #map { height: 480px; width: 100%; z-index: 1; display: none; }
     @media (min-width: 1024px) { #map { height: 560px; } }
+
+    .map-placeholder {
+      height: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--color-body);
+    }
+    @media (min-width: 1024px) { .map-placeholder { height: 560px; } }
+    .map-placeholder svg { opacity: 0.25; }
+    .map-placeholder p { font-size: 0.95rem; font-weight: 500; }
 
     .map-info-bar {
       padding: 1rem 1.25rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
       border-top: 1px solid var(--color-stroke);
+      display: none;
     }
     html.dark .map-info-bar { border-color: var(--color-strokedk); }
     .map-info-name {
       flex: 1;
       min-width: 0;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--color-gray-900);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     html.dark .map-info-name { color: #fff; }
-    .map-info-stats {
-      display: flex;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
     .map-stat {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--color-gray-900);
       background: rgba(234,179,8,0.1);
@@ -203,7 +300,6 @@
       padding: 0.25rem 0.75rem;
     }
     html.dark .map-stat { color: #fff; }
-
     .download-btn {
       display: inline-flex;
       align-items: center;
@@ -216,24 +312,9 @@
       font-weight: 700;
       font-size: 0.85rem;
       transition: opacity 0.15s, transform 0.15s;
-      flex-shrink: 0;
     }
     .download-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-    .map-placeholder {
-      height: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      color: var(--color-body);
-    }
-    @media (min-width: 1024px) { .map-placeholder { height: 560px; } }
-    .map-placeholder svg { opacity: 0.3; }
-    .map-placeholder p { font-size: 1rem; font-weight: 500; }
-
-    /* Dark mode map tiles */
     html.dark .leaflet-tile {
       filter: brightness(0.65) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
     }
@@ -296,8 +377,45 @@
   <!-- HERO -->
   <div class="traces-hero">
     <div class="traces-badge">🚴 18 parcours disponibles</div>
-    <h1>Nos <span class="text-yellow-accent">Parcours</span> & Traces GPX</h1>
-    <p>Cliquez sur un parcours pour le visualiser sur la carte, puis téléchargez le GPX pour vos sorties.</p>
+    <h1>Nos <span class="text-yellow-accent">Parcours</span> &amp; Traces GPX</h1>
+    <p>Filtrez par niveau, distance ou dénivelé, visualisez le tracé sur la carte et téléchargez le GPX en un clic.</p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-bar">
+    <span class="filter-label">Niveau :</span>
+    <div class="filter-group">
+      <button class="filter-btn active" data-pack="all">Tous</button>
+      <button class="filter-btn" data-pack="fast">🔥 Fast Pack</button>
+      <button class="filter-btn" data-pack="middle">⚡ Middle Pack</button>
+      <button class="filter-btn" data-pack="rookie">🌱 Rookie Pack</button>
+    </div>
+
+    <div class="filter-sep"></div>
+
+    <div class="range-filter">
+      <span>Distance :</span>
+      <select id="filter-dist">
+        <option value="0">Toutes</option>
+        <option value="60">≤ 60 km</option>
+        <option value="80">≤ 80 km</option>
+        <option value="100">≤ 100 km</option>
+        <option value="100p">&gt; 100 km</option>
+      </select>
+    </div>
+
+    <div class="range-filter">
+      <span>Dénivelé :</span>
+      <select id="filter-ele">
+        <option value="0">Tous</option>
+        <option value="500">≤ 500 m</option>
+        <option value="800">≤ 800 m</option>
+        <option value="1000">≤ 1000 m</option>
+        <option value="1000p">&gt; 1000 m</option>
+      </select>
+    </div>
+
+    <span class="result-count" id="result-count"></span>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -311,7 +429,7 @@
       <div class="track-list-inner" id="track-list"></div>
     </div>
 
-    <!-- Map + info -->
+    <!-- Map -->
     <div class="map-panel">
       <div id="map-placeholder" class="map-placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -319,16 +437,12 @@
         </svg>
         <p>Sélectionnez un parcours pour le visualiser</p>
       </div>
-      <div id="map" style="display:none;"></div>
-      <div id="map-info-bar" class="map-info-bar" style="display:none;">
+      <div id="map"></div>
+      <div id="map-info-bar" class="map-info-bar">
         <div class="map-info-name" id="map-name">—</div>
-        <div class="map-info-stats">
-          <span class="map-stat" id="map-dist">—</span>
-          <span class="map-stat" id="map-ele">—</span>
-        </div>
-        <a id="download-btn" href="#" download class="download-btn">
-          ⬇ Télécharger GPX
-        </a>
+        <span class="map-stat" id="map-dist">—</span>
+        <span class="map-stat" id="map-ele">—</span>
+        <a id="download-btn" href="#" download class="download-btn">⬇ Télécharger GPX</a>
       </div>
     </div>
   </div>
@@ -339,9 +453,7 @@
       <h2 id="footer-heading" class="sr-only">Footer</h2>
       <div class="footer-brand-block">
         <h3 class="footer-brand-title">Rueil-malmaison Triathlon</h3>
-        <p class="footer-brand-desc">
-          Plongez dans l'univers du triple effort, roulez vers de nouveaux défis et courez ensemble vers vos objectifs.
-        </p>
+        <p class="footer-brand-desc">Plongez dans l'univers du triple effort, roulez vers de nouveaux défis et courez ensemble vers vos objectifs.</p>
       </div>
       <div class="footer-columns">
         <div class="footer-col">
@@ -361,13 +473,14 @@
     </footer>
   </div>
 
-  <!-- Leaflet JS (no integrity attribute) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="main.js"></script>
 
   <script>
   (function () {
-    const tracks = [
+
+    /* ---- Track data ---- */
+    const TRACKS_RAW = [
       "Boucle_Conflans_52.2km_599D+.gpx",
       "Boucle_Conflans_52.7km_605D+.gpx",
       "Boucle_Nanterre_114.8km_1137D+.gpx",
@@ -388,25 +501,53 @@
       "Saint-Cloud_vers_Conflans_116.7km_1042D+.gpx"
     ];
 
-    // Parse display name from filename
+    /* ---- Parse filename → track object ---- */
     function parseTrack(filename) {
-      // Remove .gpx
       const base = filename.replace('.gpx', '');
-      // Last two segments are dist and ele (e.g. "52.2km" and "599D+")
       const parts = base.split('_');
-      const ele = parts.pop();   // e.g. "599D+"
-      const dist = parts.pop();  // e.g. "52.2km"
-      const name = parts.join(' ');
-      return { filename, name, dist, ele };
+      const eleStr  = parts.pop(); // e.g. "599D+"
+      const distStr = parts.pop(); // e.g. "52.2km"
+      const name    = parts.join(' ');
+      const dist    = parseFloat(distStr);
+      const ele     = parseInt(eleStr);
+      const pack    = dist > 90 || ele > 950 ? 'fast'
+                    : dist >= 60 || ele >= 600 ? 'middle'
+                    : 'rookie';
+      return { filename, name, dist, ele, distStr, eleStr, pack };
     }
 
-    // Parse GPX XML and return array of [lat, lng] points
-    function parseGPXPoints(xmlText) {
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(xmlText, 'application/xml');
-      const trkpts = xml.querySelectorAll('trkpt');
+    const TRACKS = TRACKS_RAW.map(parseTrack);
+
+    /* ---- Pack UI config ---- */
+    const PACK_CONFIG = {
+      fast:   { label: '🔥 Fast Pack',   cls: 'pack-fast'   },
+      middle: { label: '⚡ Middle Pack', cls: 'pack-middle'  },
+      rookie: { label: '🌱 Rookie Pack', cls: 'pack-rookie'  }
+    };
+
+    /* ---- Filter state ---- */
+    let activePack = 'all';
+    let activeDist = '0';
+    let activeEle  = '0';
+
+    function matchesFilters(t) {
+      if (activePack !== 'all' && t.pack !== activePack) return false;
+      if (activeDist === '60'   && t.dist > 60)   return false;
+      if (activeDist === '80'   && t.dist > 80)   return false;
+      if (activeDist === '100'  && t.dist > 100)  return false;
+      if (activeDist === '100p' && t.dist <= 100) return false;
+      if (activeEle  === '500'  && t.ele > 500)   return false;
+      if (activeEle  === '800'  && t.ele > 800)   return false;
+      if (activeEle  === '1000' && t.ele > 1000)  return false;
+      if (activeEle  === '1000p'&& t.ele <= 1000) return false;
+      return true;
+    }
+
+    /* ---- GPX helpers ---- */
+    function parseGPXPoints(xml) {
+      const doc = new DOMParser().parseFromString(xml, 'application/xml');
       const pts = [];
-      trkpts.forEach(pt => {
+      doc.querySelectorAll('trkpt').forEach(pt => {
         const lat = parseFloat(pt.getAttribute('lat'));
         const lon = parseFloat(pt.getAttribute('lon'));
         if (!isNaN(lat) && !isNaN(lon)) pts.push([lat, lon]);
@@ -414,35 +555,32 @@
       return pts;
     }
 
-    // Compute elevation gain from GPX XML
-    function computeEleGain(xmlText) {
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(xmlText, 'application/xml');
-      const eles = Array.from(xml.querySelectorAll('trkpt ele')).map(e => parseFloat(e.textContent));
+    function computeEleGain(xml) {
+      const doc = new DOMParser().parseFromString(xml, 'application/xml');
+      const eles = Array.from(doc.querySelectorAll('trkpt ele')).map(e => parseFloat(e.textContent));
       let gain = 0;
       for (let i = 1; i < eles.length; i++) {
-        const diff = eles[i] - eles[i - 1];
-        if (diff > 0) gain += diff;
+        const d = eles[i] - eles[i-1];
+        if (d > 0) gain += d;
       }
       return Math.round(gain);
     }
 
-    // Haversine distance in km for an array of [lat,lng]
-    function totalDistance(pts) {
+    function totalKm(pts) {
       const R = 6371;
       let d = 0;
       for (let i = 1; i < pts.length; i++) {
-        const dLat = (pts[i][0] - pts[i-1][0]) * Math.PI / 180;
-        const dLon = (pts[i][1] - pts[i-1][1]) * Math.PI / 180;
+        const dLat = (pts[i][0]-pts[i-1][0]) * Math.PI/180;
+        const dLon = (pts[i][1]-pts[i-1][1]) * Math.PI/180;
         const a = Math.sin(dLat/2)**2 +
-          Math.cos(pts[i-1][0]*Math.PI/180) * Math.cos(pts[i][0]*Math.PI/180) * Math.sin(dLon/2)**2;
+          Math.cos(pts[i-1][0]*Math.PI/180)*Math.cos(pts[i][0]*Math.PI/180)*Math.sin(dLon/2)**2;
         d += R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       }
-      return d;
+      return d.toFixed(1);
     }
 
-    let map = null;
-    let polyline = null;
+    /* ---- Map ---- */
+    let map = null, polyline = null, markers = [];
 
     function initMap() {
       if (map) return;
@@ -456,79 +594,102 @@
     }
 
     function loadTrack(track, itemEl) {
-      // Mark active
       document.querySelectorAll('.track-item').forEach(el => el.classList.remove('active'));
       itemEl.classList.add('active');
-
-      // Show loading state
       document.getElementById('map-name').textContent = track.name + ' — chargement…';
-      document.getElementById('map-dist').textContent = track.dist;
-      document.getElementById('map-ele').textContent = track.ele;
+      document.getElementById('map-dist').textContent = '🚴 ' + track.distStr;
+      document.getElementById('map-ele').textContent  = '⛰ +' + track.eleStr;
       document.getElementById('download-btn').href = 'gpx/' + track.filename;
       document.getElementById('download-btn').setAttribute('download', track.filename);
       document.getElementById('map-info-bar').style.display = 'flex';
-
       initMap();
 
       fetch('gpx/' + track.filename)
         .then(r => r.text())
         .then(xml => {
           const pts = parseGPXPoints(xml);
-          if (!pts.length) {
-            document.getElementById('map-name').textContent = track.name + ' — aucun point trouvé';
-            return;
-          }
+          if (!pts.length) { document.getElementById('map-name').textContent = track.name + ' — aucun point'; return; }
+          if (polyline) map.removeLayer(polyline);
+          markers.forEach(m => map.removeLayer(m)); markers = [];
 
-          // Remove previous polyline
-          if (polyline) { map.removeLayer(polyline); polyline = null; }
+          polyline = L.polyline(pts, { color: '#EAB308', weight: 4, opacity: 0.9, lineJoin: 'round' }).addTo(map);
 
-          // Draw track
-          polyline = L.polyline(pts, {
-            color: '#EAB308',
-            weight: 4,
-            opacity: 0.9,
-            lineJoin: 'round',
-            lineCap: 'round'
-          }).addTo(map);
+          const mkStart = L.divIcon({ className:'', html:'<div style="width:13px;height:13px;background:#22c55e;border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,.5)"></div>', iconSize:[13,13], iconAnchor:[6,6] });
+          const mkEnd   = L.divIcon({ className:'', html:'<div style="width:13px;height:13px;background:#ef4444;border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 5px rgba(0,0,0,.5)"></div>', iconSize:[13,13], iconAnchor:[6,6] });
+          markers.push(L.marker(pts[0], {icon:mkStart}).addTo(map).bindPopup('Départ'));
+          markers.push(L.marker(pts[pts.length-1], {icon:mkEnd}).addTo(map).bindPopup('Arrivée'));
+          map.fitBounds(polyline.getBounds(), { padding:[24,24] });
 
-          // Start / end markers
-          const startIcon = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#22c55e;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>', iconSize: [12,12], iconAnchor: [6,6] });
-          const endIcon   = L.divIcon({ className: '', html: '<div style="width:12px;height:12px;background:#ef4444;border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>', iconSize: [12,12], iconAnchor: [6,6] });
-          L.marker(pts[0], { icon: startIcon }).addTo(map).bindPopup('Départ');
-          L.marker(pts[pts.length - 1], { icon: endIcon }).addTo(map).bindPopup('Arrivée');
-
-          map.fitBounds(polyline.getBounds(), { padding: [20, 20] });
-
-          // Recompute stats from actual GPX data
-          const distKm = totalDistance(pts).toFixed(1);
-          const eleGain = computeEleGain(xml);
+          const km = totalKm(pts);
+          const el = computeEleGain(xml);
           document.getElementById('map-name').textContent = track.name;
-          document.getElementById('map-dist').textContent = '🚴 ' + distKm + ' km';
-          document.getElementById('map-ele').textContent = '⛰ +' + eleGain + ' m';
+          document.getElementById('map-dist').textContent = '🚴 ' + km + ' km';
+          document.getElementById('map-ele').textContent  = '⛰ +' + el + ' m';
         })
-        .catch(() => {
-          document.getElementById('map-name').textContent = track.name + ' — erreur de chargement';
-        });
+        .catch(() => { document.getElementById('map-name').textContent = track.name + ' — erreur'; });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    /* ---- Render list ---- */
+    function renderList() {
       const list = document.getElementById('track-list');
-      document.getElementById('track-count').textContent = tracks.length;
+      list.innerHTML = '';
+      const visible = TRACKS.filter(matchesFilters);
 
-      tracks.forEach(filename => {
-        const track = parseTrack(filename);
+      document.getElementById('track-count').textContent = visible.length;
+      document.getElementById('result-count').textContent =
+        visible.length < TRACKS.length ? visible.length + ' parcours affichés sur ' + TRACKS.length : '';
+
+      if (!visible.length) {
+        list.innerHTML = '<div class="track-item-empty">Aucun parcours ne correspond aux filtres sélectionnés.</div>';
+        return;
+      }
+
+      visible.forEach(track => {
+        const pc = PACK_CONFIG[track.pack];
         const el = document.createElement('div');
         el.className = 'track-item';
+        el.dataset.filename = track.filename;
         el.innerHTML = `
-          <div class="track-item-name">${track.name}</div>
+          <div class="track-item-top">
+            <div class="track-item-name">${track.name}</div>
+            <span class="pack-tag ${pc.cls}">${pc.label}</span>
+          </div>
           <div class="track-item-stats">
-            <span class="stat-chip">🚴 ${track.dist}</span>
-            <span class="stat-chip">⛰ ${track.ele}</span>
+            <span>🚴 ${track.distStr}</span>
+            <span>⛰ +${track.eleStr}</span>
           </div>`;
         el.addEventListener('click', () => loadTrack(track, el));
         list.appendChild(el);
       });
+    }
+
+    /* ---- Filter handlers ---- */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderList();
+
+      // Pack buttons
+      document.querySelectorAll('[data-pack]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activePack = btn.dataset.pack;
+          document.querySelectorAll('[data-pack]').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderList();
+        });
+      });
+
+      // Distance select
+      document.getElementById('filter-dist').addEventListener('change', function () {
+        activeDist = this.value;
+        renderList();
+      });
+
+      // Elevation select
+      document.getElementById('filter-ele').addEventListener('change', function () {
+        activeEle = this.value;
+        renderList();
+      });
     });
+
   })();
   </script>
 </body>
