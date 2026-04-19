@@ -153,6 +153,78 @@ body{background:#f8f6f0;color:#1a2e4a;font-family:'Barlow',sans-serif;min-height
 .edit-controls{display:flex;align-items:center;gap:4px}
 .ebtn{width:22px;height:22px;border-radius:4px;border:1px solid #d9d4c8;background:#f8f6f0;color:#64748b;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;line-height:1}
 .ebtn:hover{background:#fef3c7;color:#92400e}
+
+/* ─── RESPONSIVE MOBILE ─────────────────────────────── */
+@media (max-width: 640px){
+  /* Header */
+  #header{padding:0 10px}
+  .topbar{padding:8px 0 4px;gap:6px}
+  .site-title{font-size:20px}
+  .site-sub{display:none}
+  .badges{display:none}
+
+  /* Covers bar → défilement horizontal */
+  .covers-bar{overflow-x:auto;flex-wrap:nowrap;gap:10px;padding:6px 2px;margin:4px 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .covers-bar::-webkit-scrollbar{display:none}
+  .covers-hint{display:none}
+  .covers-label{white-space:nowrap;font-size:10px;flex-shrink:0}
+  .cover-item{flex-shrink:0}
+  .cover-day-label{font-size:9px}
+  .cover-controls input{width:32px;font-size:17px}
+  /* Boutons +/− plus grands pour le tactile */
+  .cbtn{width:34px;height:34px;font-size:17px;border-radius:6px}
+
+  /* Tabs → défilement horizontal */
+  .tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;margin-top:2px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab-btn{padding:9px 12px;font-size:11px;white-space:nowrap;flex-shrink:0}
+
+  /* Main */
+  .main{padding:10px 8px 80px}
+
+  /* Day block */
+  .day-header{padding:10px 12px;gap:6px}
+  .corvee-lbl{display:none}
+
+  /* Meals → 1 colonne */
+  .meals-grid{grid-template-columns:1fr}
+  .meal-card{min-height:unset;padding:13px 14px}
+
+  /* Recipe header */
+  .rhead{padding:12px 14px 10px}
+  .rtitle{font-size:19px}
+  .rsub{font-size:12px;margin-bottom:6px}
+  .macros{gap:8px}
+  .macro-val{font-size:15px}
+  .kcal-badge .macro-val{font-size:17px}
+
+  /* Recipe body → 1 colonne (ingrédients puis étapes) */
+  .rbody{grid-template-columns:1fr}
+  .rcol:first-child{border-right:none;border-bottom:1px solid #e8e3da}
+  .rcol{padding:12px 14px}
+
+  /* Recipe footer */
+  .rfoot{padding:8px 12px}
+  .rfoot-card{min-width:auto}
+  .allergy-bar,.apero-bar{padding:8px 12px;flex-wrap:wrap}
+
+  /* Shopping */
+  .shop-section-header{padding:10px 12px}
+  .shop-item{padding:10px 12px;gap:8px}
+  .shop-item-name{font-size:13px}
+  .qty-box{min-width:54px;font-size:13px;padding:3px 8px}
+  .edit-controls{gap:2px}
+  .ebtn{width:28px;height:28px}
+
+  /* Rfoot row: stack dessert + fromage */
+  .rfoot-row{flex-direction:column;gap:8px}
+
+  /* Badges macro qualité: wrap & smaller */
+  .macro-qual{font-size:10px !important;padding:2px 7px !important}
+
+  /* Qty box editable inline override */
+  .qty-box.qty-edit{min-width:60px !important}
+}
 </style>
 </head>
 <body>
@@ -1505,7 +1577,7 @@ function buildPlanning(){
             <span class="bc" style="font-weight:900;font-size:20px;color:${meta.accent};min-width:28px;text-align:center">${dn}</span>
             <button class="cbtn" onclick="chg('${day}',1)">+</button>
           </div>
-          <span style="font-size:11px;color:#2d4a60;font-style:italic">Corvée : ${meta.corvee}</span>
+          <span class="corvee-lbl" style="font-size:11px;color:#2d4a60;font-style:italic">Corvée : ${meta.corvee}</span>
         </div>
       </div>
       <div class="meals-grid">${slots.map(id=>mealCardHtml(id,day)).join('')}</div>`;
