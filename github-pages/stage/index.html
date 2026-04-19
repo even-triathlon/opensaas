@@ -1763,7 +1763,7 @@ function rebuildShopQtys(){
   for(const sec of SHOP_SECTIONS){
     if(sec.editable) continue;
     sec.items.forEach((item,i)=>{
-      const el=document.getElementById('sqty-'+sec.id+'-'+i');
+      const el=document.getElementById('sqty-'+sec.id+'-'+i);
       if(el && item.mode!=='fixed') el.textContent=item.qty();
     });
   }
@@ -1825,4 +1825,4 @@ buildRecipeSel();
 showRecipe('mar-soir');
 </script>
 </body>
-</html>}<parameter name="filePath">/Users/florian/Desktop/rmt/opensaas/github-pages/stage/index.html
+</html><parameter name="filePath">/Users/florian/Desktop/rmt/opensaas/github-pages/stage/index.html
