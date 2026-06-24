@@ -18,7 +18,7 @@ interface PaymentPlanCard {
 export const paymentPlanCards = {
   [PaymentPlanId.Hobby]: {
     name: 'Inscription Type 1',
-    price: '254€',
+    price: '264€',
     description: 'Entraînements LUNDI MARDI et SAMEDI',
     features: [
       'Entraînements de natation du LUNDI avec entraîneur',
@@ -28,7 +28,7 @@ export const paymentPlanCards = {
   },
   [PaymentPlanId.Pro]: {
     name: 'Inscription Type 2',
-    price: '254€',
+    price: '264€',
     description: 'Entraînements MARDI JEUDI et SAMEDI',
     features: [
       'Entraînements de natation du JEUDI avec entraîneur',
@@ -38,7 +38,7 @@ export const paymentPlanCards = {
   },
   [PaymentPlanId.Credits10]: {
     name: 'Inscription Type 3',
-    price: '297€',
+    price: '307€',
     description: 'Entraînements LUNDI, MARDI, JEUDI et SAMEDI',
     features: [
       'Entraînements de natation du LUNDI et du JEUDI avec entraîneur',
@@ -250,9 +250,8 @@ const PricingPage = () => {
   return (
     <div className='py-10 lg:mt-10'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        {/* Avertissement d'inscription */}
         <div className="bg-red-500 text-white text-center py-4 mb-8">
-          <p className="text-lg font-bold">Attention : Les inscriptions ne sont pas encore ouvertes. Elles seront accessibles à partir du 30 juin 2025.</p>
+          <p className="text-lg font-bold">Attention : Les inscriptions ouvrent à partir du 1er juillet. Toute demande envoyée avant cette date ne sera pas traitée.</p>
         </div>
         <div id='pricing' className='mx-auto max-w-4xl text-center'>
           <h2 className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
