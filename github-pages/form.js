@@ -57,6 +57,23 @@ document.addEventListener('DOMContentLoaded', function () {
             const data = await response.json();
 
             if (data.success) {
+                // Envoyer aussi les données au webhook n8n pour le Google Sheet
+                fetch('https://n8n-n8n.apps.neutron-sno-gpu.neutron-it.fr/webhook/inscription-rmt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        firstName: formData.get('firstName'),
+                        lastName: formData.get('lastName'),
+                        birthDate: formData.get('birthDate'),
+                        address: formData.get('address'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                        sportsLevel: formData.get('sportsLevel'),
+                        sportsExperience: formData.get('sportsExperience'),
+                        sportsGoals: formData.get('sportsGoals'),
+                        subscriptionType: formData.get('subscriptionType')
+                    })
+                }).catch(() => {}); // silencieux si n8n indisponible
                 // Check if there's a redirect configured
                 const redirectInput = form.querySelector('input[name="redirect"]');
                 if (redirectInput && redirectInput.value) {
