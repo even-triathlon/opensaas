@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (data.success) {
                 // Envoyer aussi les données au webhook n8n pour le Google Sheet
-                fetch('https://n8n-n8n.apps.neutron-sno-gpu.neutron-it.fr/webhook/inscription-rmt', {
+                fetch('https://n8n-n8n.apps.neutron-sno-office.neutron-it.fr/webhook/inscription-rmt', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
