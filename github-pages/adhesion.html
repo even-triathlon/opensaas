@@ -13,44 +13,75 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-        .ha-warning-sticky {
-            position: sticky;
-            top: 72px;
-            z-index: 100;
+        /* Layout pleine hauteur sous la navbar */
+        .ha-page-layout {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 70px);
+        }
+
+        /* Bande warning compacte */
+        .ha-warning-bar {
             background: #f59e0b;
             color: #1a1a1a;
-            border-left: 5px solid #b45309;
-            border-radius: 0.5rem;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .ha-warning-title {
-            font-size: 1rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+            border-bottom: 3px solid #b45309;
+            padding: 0.6rem 1.25rem;
+            flex-shrink: 0;
             display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            align-items: flex-start;
+            gap: 0.6rem;
         }
-        .ha-warning-steps {
-            font-size: 0.9rem;
-            font-weight: 500;
-            line-height: 1.6;
-            margin: 0;
-            padding-left: 1.2rem;
+        .ha-warning-bar-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
-        .ha-warning-steps li {
-            margin-bottom: 0.2rem;
+        .ha-warning-bar-text {
+            font-size: 0.82rem;
+            font-weight: 600;
+            line-height: 1.5;
         }
-        .ha-warning-steps strong {
-            font-weight: 700;
-            background: rgba(0,0,0,0.08);
+        .ha-warning-bar-text strong {
+            background: rgba(0,0,0,0.1);
             border-radius: 3px;
             padding: 0 3px;
+            font-weight: 700;
         }
-        .ha-iframe-wrap {
-            margin-top: 0.5rem;
+        .ha-warning-title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Iframe prend tout l'espace restant */
+        .ha-iframe-container {
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .ha-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Mobile : scroll naturel de la page */
+        @media (max-width: 640px) {
+            .ha-page-layout {
+                height: auto;
+            }
+            .ha-warning-bar {
+                flex-direction: column;
+                gap: 0.3rem;
+                padding: 0.75rem 1rem;
+            }
+            .ha-iframe-container {
+                overflow: visible;
+            }
+            .ha-iframe-container iframe {
+                height: 800px;
+            }
         }
     </style>
 </head>
@@ -116,52 +147,30 @@
         </div>
     </header>
 
-    <div class="page-wrapper">
-        <div class="section-container">
+    <div class="ha-page-layout">
 
-            <div class="page-title-center">
-                <h2 class="page-main-title">
-                    Adhésion <span class="text-purple-accent">2026-2027</span>
-                </h2>
+        <!-- Warning compact — toujours visible, ne masque pas l'iframe -->
+        <div class="ha-warning-bar" role="alert">
+            <div class="ha-warning-bar-icon">⚠️</div>
+            <div class="ha-warning-bar-text">
+                <div class="ha-warning-title">Important — Page récapitulative HelloAsso</div>
+                Le club a déjà fait un don à HelloAsso, vous n'avez pas à le refaire.
+                Sur la page récapitulative : cliquez sur <strong>« Modifier ma contribution »</strong>,
+                passez à <strong>0 €</strong>, puis <strong>« Je ne souhaite pas soutenir aujourd'hui »</strong>.
             </div>
-            <p class="page-subtitle">
-                Complétez votre adhésion au Club de Triathlon de Rueil-Malmaison directement ci-dessous.
-            </p>
-
-            <!-- Warning contribution HelloAsso — sticky pour rester visible pendant le scroll -->
-            <div class="ha-warning-sticky" role="alert">
-                <div class="ha-warning-title">
-                    ⚠️ Important — Page récapitulative HelloAsso
-                </div>
-                <p style="font-size:0.875rem; font-weight:600; margin-bottom:0.5rem;">
-                    Le club a déjà effectué un don à HelloAsso — vous n'avez pas à le refaire. Sur la page récapitulative, supprimez la contribution proposée :
-                </p>
-                <ol class="ha-warning-steps">
-                    <li>Dans la section <strong>« Votre contribution au fonctionnement de HelloAsso »</strong>, cliquez sur <strong>« Modifier ma contribution »</strong></li>
-                    <li>Passez le montant à <strong>0 €</strong></li>
-                    <li>Cliquez sur <strong>« Je ne souhaite pas soutenir aujourd'hui »</strong></li>
-                </ol>
-            </div>
-
-            <!-- HelloAsso iframe -->
-            <div class="ha-iframe-wrap">
-                <iframe
-                    id="haWidget"
-                    allowtransparency="true"
-                    scrolling="auto"
-                    src="https://www.helloasso.com/associations/rueil-malmaison-triathlon/adhesions/adhesion-2026-2027-rueil-malmaison-triathlon/widget"
-                    style="width: 100%; height: 750px; border: none;"
-                    onload="window.addEventListener('message', function(e) {
-                        const dataHeight = e.data.height;
-                        const haWidgetElement = document.getElementById('haWidget');
-                        if (dataHeight > parseFloat(haWidgetElement.height || 0)) {
-                            haWidgetElement.height = dataHeight + 'px';
-                        }
-                    })">
-                </iframe>
-            </div>
-
         </div>
+
+        <!-- HelloAsso iframe — remplit tout l'espace restant -->
+        <div class="ha-iframe-container">
+            <iframe
+                id="haWidget"
+                allowtransparency="true"
+                scrolling="auto"
+                src="https://www.helloasso.com/associations/rueil-malmaison-triathlon/adhesions/adhesion-2026-2027-rueil-malmaison-triathlon/widget"
+                style="width: 100%; height: 100%; border: none;">
+            </iframe>
+        </div>
+
     </div>
 
     <!-- FOOTER -->
