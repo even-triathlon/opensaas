@@ -162,30 +162,97 @@
             display: block;
         }
 
-        /* ── Mobile : empilé ── */
+        /* ── Mobile : plein écran, pas de scroll de page ── */
         @media (max-width: 768px) {
+            body { overflow: hidden; }
+
             .ha-layout {
                 flex-direction: column;
-                height: auto;
+                height: calc(100vh - 70px);
+                overflow: hidden;
             }
+
+            /* Sidebar réduite à une bannière compacte */
             .ha-sidebar {
                 width: 100%;
+                flex-shrink: 0;
                 border-right: none;
                 border-bottom: 1px solid rgba(17, 24, 39, 0.08);
-                padding: 1.25rem 1rem;
-                gap: 1rem;
+                padding: 0;
+                gap: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                max-height: 300px;
             }
             html.dark .ha-sidebar {
                 border-bottom-color: rgba(255, 255, 255, 0.07);
             }
-            .ha-sidebar-title {
-                font-size: 1.15rem;
+            .ha-sidebar.is-collapsed {
+                max-height: 0;
+                border-bottom: none;
             }
+
+            /* Bannière compacte mobile : warning + bouton fermer */
+            .ha-mobile-banner {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.625rem;
+                padding: 0.75rem 1rem;
+                background: #fef3c7;
+                border-bottom: 2px solid rgba(234, 179, 8, 0.4);
+            }
+            html.dark .ha-mobile-banner {
+                background: rgba(234, 179, 8, 0.1);
+            }
+            .ha-mobile-banner-text {
+                flex: 1;
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: #78350f;
+                line-height: 1.5;
+            }
+            html.dark .ha-mobile-banner-text {
+                color: #fde68a;
+            }
+            .ha-mobile-banner-text strong {
+                font-weight: 700;
+            }
+            .ha-mobile-close {
+                flex-shrink: 0;
+                background: rgba(217, 119, 6, 0.15);
+                border: none;
+                border-radius: 6px;
+                color: #92400e;
+                font-size: 0.72rem;
+                font-weight: 700;
+                padding: 0.3rem 0.55rem;
+                cursor: pointer;
+                white-space: nowrap;
+                margin-top: 1px;
+            }
+            html.dark .ha-mobile-close {
+                color: #fcd34d;
+            }
+
+            /* Masquer les éléments desktop dans la sidebar mobile */
+            .ha-sidebar-title,
+            .ha-sidebar-desc,
+            .ha-warning-card,
+            .ha-sidebar > p:last-child {
+                display: none;
+            }
+
+            /* Iframe prend tout l'espace restant */
             .ha-iframe-panel {
-                min-height: 750px;
+                flex: 1;
+                min-height: 0;
+                overflow: hidden;
             }
             .ha-iframe-panel iframe {
-                height: 750px;
+                width: 100%;
+                height: 100%;
+                display: block;
+                border: none;
             }
         }
     </style>
@@ -267,6 +334,14 @@
                 Les places sont limitées à 45 membres.
             </p>
 
+            <!-- Bannière compacte visible uniquement sur mobile -->
+            <div class="ha-mobile-banner" id="ha-mobile-banner" role="alert">
+                <span class="ha-mobile-banner-text">
+                    ⚠️ Le club a déjà fait un don à HelloAsso. Sur la page récap : <strong>Modifier ma contribution → 0 € → Je ne souhaite pas soutenir</strong>
+                </span>
+                <button class="ha-mobile-close" onclick="dismissMobileBanner()" aria-label="Fermer">OK ✕</button>
+            </div>
+
             <!-- Carte warning HelloAsso -->
             <div class="ha-warning-card" role="alert">
                 <div class="ha-warning-card-header">
@@ -329,6 +404,25 @@
     </div>
 
     <script src="main.js"></script>
+    <script>
+        function dismissMobileBanner() {
+            const sidebar = document.querySelector('.ha-sidebar');
+            sidebar.classList.add('is-collapsed');
+        }
+
+        // Sur mobile, empêche le scroll de page quand l'iframe envoie un resize
+        window.addEventListener('message', function(e) {
+            if (!e.data || !e.data.height) return;
+            // On ne redimensionne PAS l'iframe sur mobile (il est déjà en flex fill)
+            // Sur desktop uniquement on laisse HelloAsso gérer
+            if (window.innerWidth > 768) {
+                const el = document.getElementById('haWidget');
+                if (e.data.height > (parseFloat(el.style.height) || 0)) {
+                    el.style.height = e.data.height + 'px';
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
